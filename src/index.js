@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 
 const { v4: uuidv4, v4 } = require('uuid');
-const { query } = require('express');
 
 const app = express();
 
@@ -25,7 +24,6 @@ function checksExistsUserAccount(request, response, next) {
 }
 
 app.post('/users', (request, response) => {
-  // Complete aqui
   const { name, username } = request.body;
 
   const usernameExists = users.find(user => user.username == username);
@@ -57,7 +55,6 @@ app.get('/todos', checksExistsUserAccount, (request, response) => {
 });
 
 app.post('/todos', checksExistsUserAccount, (request, response) => {
-  
   const { title, deadline } = request.body;
   const { user }  = request;
 
@@ -72,7 +69,6 @@ app.post('/todos', checksExistsUserAccount, (request, response) => {
   user.todos.push(todo);
 
   return response.status(201).json(todo);
-
 });
 
 app.put('/todos/:id', checksExistsUserAccount, (request, response) => {
@@ -122,5 +118,3 @@ app.delete('/todos/:id', checksExistsUserAccount, (request, response) => {
 });
 
 module.exports = app;
-
-app.listen(3333);
