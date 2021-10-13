@@ -1,0 +1,27 @@
+@hostname = http://localhost:3333
+
+GET {{hostname}}/users
+
+###
+POST {{hostname}}/users
+content-type: application/json
+
+{
+	"name": "Marcelo Alessandro 3",
+	"username": "marcelo.mac"
+}
+
+###
+POST {{hostname}}/todos
+content-type: application/json
+username: marcelo.mac
+
+{
+	"title": "acordar cedo 2",
+	"deadline": "2021-10-20"
+}
+
+###
+GET {{hostname}}/todos
+content-type: application/json
+username: marcelo.mac
